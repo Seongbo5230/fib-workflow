@@ -6,7 +6,7 @@ before_install:
   - docker build -t seongbo5230/fib-workflow-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run seongbo5230/fib-workflow-test npm test -- --coverage
+  - docker run -e CI=true seongbo5230/fib-workflow-test npm test
 
 after_success:
   - docker build -t seongbo5230/fib-workflow-client ./client
