@@ -3,11 +3,11 @@ language: generic
 services:
   - docker:
 
-before_install:
-  - docker build -t seongbo5230/fib-workflow-test -f ./client/Dockerfile.dev ./client
-
-script:
-  - docker run -e CI=true seongbo5230/fib-workflow-test npm test
+# before_install:
+#   - docker build -t seongbo5230/fib-workflow-test -f ./client/Dockerfile.dev ./client
+#
+# script:
+#   - docker run -e CI=true seongbo5230/fib-workflow-test npm test
 
 after_success:
   - docker build -t seongbo5230/fib-workflow-client ./client
