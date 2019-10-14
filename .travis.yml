@@ -1,5 +1,6 @@
 sudo: required
 language: generic
+
 services:
   - docker:
 
@@ -22,3 +23,17 @@ after_success:
   - docker push seongbo5230/fib-workflow-server
   - docker push seongbo5230/fib-workflow-worker
   - docker push seongbo5230/fib-workflow-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: fib-workflow
+  env: FibWorkflow-env
+  bucket_name: elasticbeanstalk-us-west-1-946811956022
+  bucket_path: fib-workflow
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
